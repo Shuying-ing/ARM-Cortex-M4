@@ -1,0 +1,17 @@
+.\objects\qsy.o: qsy.c
+.\objects\qsy.o: qsy.h
+.\objects\qsy.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\qsy.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\qsy.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\qsy.o: .\inc\hw_memmap.h
+.\objects\qsy.o: .\driverlib\debug.h
+.\objects\qsy.o: .\driverlib\gpio.h
+.\objects\qsy.o: .\inc\hw_i2c.h
+.\objects\qsy.o: .\inc\hw_types.h
+.\objects\qsy.o: .\driverlib\i2c.h
+.\objects\qsy.o: .\driverlib\pin_map.h
+.\objects\qsy.o: .\driverlib\sysctl.h
+.\objects\qsy.o: .\driverlib\systick.h
+.\objects\qsy.o: .\driverlib\interrupt.h
+.\objects\qsy.o: .\driverlib\uart.h
+.\objects\qsy.o: .\inc\hw_ints.h
