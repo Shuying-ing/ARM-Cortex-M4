@@ -448,9 +448,9 @@
           </GroupOption>
           <Files>
             <File>
-              <FileName>exp1-3_ad.c</FileName>
+              <FileName>exp1-1.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\exp1-3_ad.c</FilePath>
+              <FilePath>.\exp1-1.c</FilePath>
             </File>
           </Files>
         </Group>

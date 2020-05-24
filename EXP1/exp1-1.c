@@ -23,11 +23,13 @@ int main(void)
 	//ui32SysClock = SysCtlClockFreqSet((SYSCTL_USE_OSC | SYSCTL_OSC_INT), 16000000);		//内部时钟
 	ui32SysClock = SysCtlClockFreqSet((SYSCTL_USE_OSC | SYSCTL_OSC_MAIN | SYSCTL_XTAL_25MHZ), 25000000);		//PLL时钟
 	S800_GPIO_Init();
+	
 	while(1)
   {
 		read_key_value = GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_0)	;				//read the USR_SW1 - PJ0 key value
 		PF0_Flash(read_key_value);
    }
+
 }
 
 
@@ -72,7 +74,7 @@ void S800_GPIO_Init(void)
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOJ));			//Wait for the GPIO moduleJ ready	
 	
 	
-  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0 | GPIO_PIN_1);			//Set PF0 as Output pin
+  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);			//Set PF0 as Output pin
 	//LED_M0 - PF0
 	//函数原型：void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins)
 	//配置GPIO端口引脚为输出引脚，如果字符型（uint8_t）参数ui8Pins某位为1，则GPIO端口对应位配置为输出引脚
@@ -89,6 +91,16 @@ void S800_GPIO_Init(void)
 	//ui32Strength：端口的输出驱动能力，对输入设置无效，可选项包括GPIO_STRENGTH_2MA/4MA/8MA/8MA_SC/6MA/10MA/12MA
 	//ui32PinType：引脚类型，可选项包括GPIO_PIN_TYPE_STD（推挽）、GPIO_PIN_TYPE_STD_WPU（推挽上拉）、GPIO_PIN_TYPE_STD_WPD（推挽下拉）、
 	//GPIO_PIN_TYPE_OD（开漏）、GPIO_PIN_TYPE_ANALOG（模拟）、GPIO_PIN_TYPE_WAKE_HIGH（高电平从冬眠唤醒）、GPIO_PIN_TYPE_WAKE_LOW（低）
+	
+	
+	//消除 LED_M2 LED_M3 抖动
+	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE,GPIO_PIN_2);
+	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE,GPIO_PIN_3);
+	//GPIOPadConfigSet(GPIO_PORTF_BASE,GPIO_PIN_2,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
+	//GPIOPadConfigSet(GPIO_PORTF_BASE,GPIO_PIN_3,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
+	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0x0);
+	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x0);
+
 }
 
 
